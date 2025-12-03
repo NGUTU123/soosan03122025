@@ -12,18 +12,14 @@ interface BlogSidebarProps {
   categories: Record<string, string>;
   categoryInfoMap: Record<string, BlogCategoryInfo>;
   currentCategory?: string;
-  recommendedPosts?: BlogPost[];
-  getCategorySlug: (categoryId: string) => string;
-  getPostUrl: (post: BlogPost) => string;
+  recommendedPosts?: Array<BlogPost & { url?: string }>;
 }
 
 const BlogSidebar = ({
   categories,
   categoryInfoMap,
   currentCategory,
-  recommendedPosts = [],
-  getCategorySlug,
-  getPostUrl
+  recommendedPosts = []
 }: BlogSidebarProps) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -81,7 +77,7 @@ const BlogSidebar = ({
             {recommendedPosts.map((post) => (
               <a
                 key={post.slug}
-                href={getPostUrl(post)}
+                href={post.url || '#'}
                 className="group block"
               >
                 <div className="flex gap-3">
