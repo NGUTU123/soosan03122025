@@ -4,6 +4,7 @@ import Layout from '../components/Layout.tsx';
 import { getVisibleBlogPosts } from '../utils/contentCollections';
 import { getBlogCategories } from '../utils/blogCategories';
 import BlogCategoryFilter from '../components/blog/BlogCategoryFilter.tsx';
+import BlogSearch from '../components/blog/BlogSearch.tsx';
 import { OptimizedImage } from '../components/ui/optimized-image.tsx';
 
 const sortedPosts = await getVisibleBlogPosts();
@@ -32,6 +33,26 @@ const postsByCategory = categories.reduce((acc, cat) => {
           Cập nhật tin tức mới nhất về ngành vận tải, đánh giá xe tải, xe cẩu, kinh nghiệm lái xe và bảo dưỡng
         </p>
       </div>
+
+      <BlogSearch
+        client:load
+        posts={sortedPosts.map(post => ({
+          id: post.id,
+          slug: post.slug,
+          title: post.title,
+          description: post.description,
+          category: post.category,
+          categorySlug: getCategorySlug(post.category),
+          images: post.images,
+          publishDate: post.publishDate,
+          views: post.views
+        }))}
+        categories={categories.map(cat => ({
+          id: cat.data.id,
+          name: cat.data.name,
+          slug: cat.data.slug || cat.data.id
+        }))}
+      />
 
       <BlogCategoryFilter
         client:load
