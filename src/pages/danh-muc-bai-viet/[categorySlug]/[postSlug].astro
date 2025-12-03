@@ -6,6 +6,7 @@ import { getBlogCategories } from '../../../utils/blogCategories';
 import { getVisibleBlogPosts } from '../../../utils/contentCollections';
 import { OptimizedImage } from '../../../components/ui/optimized-image.tsx';
 import BlogSidebar from '../../../components/blog/BlogSidebar.tsx';
+import TableOfContents from '../../../components/blog/TableOfContents.tsx';
 import '../../../components/blog/BlogStyles.css';
 import { getVisibleProducts } from '../../../utils/contentCollections';
 import type { Truck } from '../../../models/TruckTypes';
@@ -276,5 +277,6 @@ const tags = postData.tags || [];
         </div>
       </div>
     </article>
+    <TableOfContents client:only="react" content={post.body} />
   </Layout>
 </BaseLayout>
