@@ -135,7 +135,7 @@ const Footer: React.FC = () => {
                     </a>
                   </li>
                   <li>
-                    <a href="/danh-muc-bai-viet/cong-nghe-doi-moi" className="text-gray-400 hover:text-primary transition-colors text-sm">
+                    <a href="/danh-muc-bai-viet/cong-nghe-va-doi-moi" className="text-gray-400 hover:text-primary transition-colors text-sm">
                       Công Nghệ & Đổi Mới
                     </a>
                   </li>
