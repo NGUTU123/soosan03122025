@@ -11,6 +11,7 @@ import '../../../components/blog/BlogStyles.css';
 import { getVisibleProducts } from '../../../utils/contentCollections';
 import type { Truck } from '../../../models/TruckTypes';
 import { getVehicleUrlPrefix } from '../../../models/TruckTypes';
+import useRelatedTruckForBlogPost from '../../../hooks/useRelatedTruckForBlogPost';
 
 export const prerender = true;
 
@@ -57,7 +58,15 @@ const recommendedPosts = allPosts
   }));
 
 const allProducts = await getVisibleProducts();
-const relatedProducts = allProducts.slice(0, 1);
+
+const blogPostForMatching = {
+  ...postData,
+  content: post.body,
+  id: post.id
+};
+
+const relatedProduct = useRelatedTruckForBlogPost(blogPostForMatching, allProducts);
+const relatedProducts = relatedProduct ? [relatedProduct] : [];
 
 const getPostUrl = (post: any) => {
   const catSlug = getCategorySlug(post.category);
