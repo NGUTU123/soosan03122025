@@ -1,5 +1,5 @@
 import React from 'react';
-import { CalendarDays, Clock, ChevronRight, Tag, TrendingUp, User, Eye, Lightbulb, Zap, MessageCircle, BookOpen } from 'lucide-react';
+import { CalendarDays, Clock, ChevronRight, TrendingUp, Eye, User, MessageCircle, BookOpen } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { BlogPost } from '@/models/BlogPost';
 import { OptimizedImage } from '@/components/ui/optimized-image';
@@ -14,6 +14,7 @@ import {
 import useRelatedTruckForBlogPost from '@/hooks/useRelatedTruckForBlogPost';
 import { getVehicleUrlPrefix } from '@/models/TruckTypes';
 import type { BlogCategoryInfo } from '@/utils/blogCategories';
+import { CategoryIcon } from '@/utils/categoryIcons';
 
 interface BlogSectionProps {
   posts: BlogPost[];
@@ -325,13 +326,7 @@ const BlogSection = ({ posts, categories, categoryInfoMap }: BlogSectionProps) =
                   className="bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:border-primary/30 hover:shadow-md transition group text-center"
                 >
                   <div className="text-3xl mb-2 text-primary/80 group-hover:text-primary transition-colors">
-                    {categoryId === 'tin-tuc-nganh-van-tai' && <TrendingUp className="mx-auto" />}
-                    {categoryId === 'danh-gia-xe' && <Tag className="mx-auto" />}
-                    {categoryId === 'kinh-nghiem-lai-xe' && <User className="mx-auto" />}
-                    {categoryId === 'maintenance' && <Eye className="mx-auto" />}
-                    {categoryId === 'buying-guide' && <Lightbulb className="mx-auto" />}
-                    {categoryId === 'technology' && <Zap className="mx-auto" />}
-                    {categoryId === 'chinh-sach-luat-giao-thong' && <BookOpen className="mx-auto" />}
+                    <CategoryIcon categoryId={categoryId} className="mx-auto h-8 w-8" />
                   </div>
                   <h4 className="font-medium">{label}</h4>
                   <p className="text-sm text-gray-500 mt-1">Xem tất cả bài viết</p>

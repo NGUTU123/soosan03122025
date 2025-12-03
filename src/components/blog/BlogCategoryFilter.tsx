@@ -1,34 +1,12 @@
 import React from 'react';
-import {
-  TrendingUp,
-  Tag,
-  User,
-  Wrench,
-  Lightbulb,
-  Zap
-} from 'lucide-react';
 import type { BlogCategoryInfo } from '@/utils/blogCategories';
+import { getCategoryIcon } from '@/utils/categoryIcons';
 
 interface BlogCategoryFilterProps {
   categories: BlogCategoryInfo[];
   activeCategory?: string;
   onCategoryClick?: (categoryId: string) => void;
 }
-
-const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
-  'industry-news': TrendingUp,
-  'tin-tuc-nganh-van-tai': TrendingUp,
-  'product-review': Tag,
-  'danh-gia-xe': Tag,
-  'driver-tips': User,
-  'kinh-nghiem-lai-xe': User,
-  'maintenance': Wrench,
-  'bao-duong-xe': Wrench,
-  'buying-guide': Lightbulb,
-  'tu-van-mua-xe': Lightbulb,
-  'technology': Zap,
-  'cong-nghe': Zap,
-};
 
 const BlogCategoryFilter = ({
   categories,
@@ -39,7 +17,7 @@ const BlogCategoryFilter = ({
     <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
       <div className="flex flex-wrap gap-3 justify-center">
         {categories.map((category) => {
-          const IconComponent = categoryIcons[category.id] || Tag;
+          const IconComponent = getCategoryIcon(category.id);
           const isActive = activeCategory === category.id;
 
           return (
