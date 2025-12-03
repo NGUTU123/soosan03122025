@@ -130,8 +130,7 @@ const tags = postData.tags || [];
                 </div>
               )}
 
-              <div class="prose prose-lg max-w-none prose-content">
-                <Content />
+              <div class="prose prose-lg max-w-none prose-content" set:html={post.body}>
               </div>
 
               {tags.length > 0 && (
