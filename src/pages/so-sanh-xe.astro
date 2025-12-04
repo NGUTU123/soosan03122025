@@ -1,21 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Layout from '../components/Layout.tsx';
-import ComparePageContent from '../components/compare/ComparePageContent.tsx';
+import ComparePageWithProvider from '../components/compare/ComparePageWithProvider.tsx';
 ---
 
 <BaseLayout
   title="So Sánh Xe | soosanmotor.com"
   description="So sánh các dòng xe tải, cẩu, mooc, đầu kéo để chọn sản phẩm phù hợp nhất với nhu cầu của bạn."
 >
-  <Layout client:load>
-    <div class="container mx-auto px-4 py-12">
-      <h1 class="text-4xl font-bold text-center mb-4">So Sánh Xe</h1>
-      <p class="text-center text-gray-600 mb-12">
-        Chọn tối đa 3 xe để so sánh chi tiết thông số kỹ thuật và giá cả
-      </p>
-
-      <ComparePageContent />
-    </div>
-  </Layout>
+  <ComparePageWithProvider client:load />
 </BaseLayout>
