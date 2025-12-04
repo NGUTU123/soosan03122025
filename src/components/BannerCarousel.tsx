@@ -79,7 +79,7 @@ const BannerCarousel: React.FC<BannerCarouselProps> = ({ banners }) => {
                 <OptimizedImage
                   src={banner.backgroundImage}
                   alt={banner.title}
-                  className="w-full h-full object-cover opacity-30"
+                  className="w-full h-full object-contain opacity-30"
                   useCase="hero"
                   lazy={false}
                 />
