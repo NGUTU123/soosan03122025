@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomePageWithProvider from '../components/home/HomePageWithProvider.tsx';
-import { getCollection } from 'astro:content';
 
 import { getOrganizedProducts, getLegacyBlogData, getVisibleCategories } from '../utils/contentCollections';
 import { getBlogCategories } from '../utils/blogCategories';
@@ -17,13 +16,6 @@ const extraCategories = allCategories.filter(cat => !baseKeys.has(cat.data.id));
 
 // Get list of enabled types
 const enabledTypes = allCategories.map(cat => cat.data.id);
-
-// Get active promotions
-const allPromotions = await getCollection('promotions');
-const activePromotions = allPromotions
-  .filter(promo => promo.data.isActive)
-  .sort((a, b) => a.data.displayOrder - b.data.displayOrder)
-  .map(promo => promo.data);
 ---
 
 <BaseLayout
@@ -32,7 +24,6 @@ const activePromotions = allPromotions
 >
   <HomePageWithProvider
     client:idle
-    promotions={activePromotions}
     featuredTrucks={featuredTrucks}
     specializedCranes={specializedCranes}
     semiTrailers={semiTrailers}

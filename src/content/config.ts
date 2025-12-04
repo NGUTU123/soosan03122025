@@ -180,28 +180,9 @@ const blogCollection = defineCollection({
   }),
 });
 
-// Promotions Collection Schema
-const promotionsCollection = defineCollection({
-  type: 'data',
-  schema: z.object({
-    id: z.string(),
-    title: z.string(),
-    subtitle: z.string().optional(),
-    description: z.string().optional(),
-    imageUrl: z.string(),
-    ctaText: z.string().optional(),
-    ctaLink: z.string().optional(),
-    badgeText: z.string().optional(),
-    badgeColor: z.enum(['red', 'blue', 'green', 'yellow', 'primary']).default('primary'),
-    isActive: z.boolean().default(true),
-    displayOrder: z.number().default(0),
-  }),
-});
-
 export const collections = {
   'categories': categoriesCollection,
   'blog-categories': blogCategoriesCollection,
   'products': productsCollection,
   'blog': blogCollection,
-  'promotions': promotionsCollection,
 };

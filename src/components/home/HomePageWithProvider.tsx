@@ -13,22 +13,7 @@ import WeightCategories from './WeightCategories';
 import TestimonialSection from './TestimonialSection';
 import { Truck } from '@/models/TruckTypes';
 
-interface Promotion {
-  id: string;
-  title: string;
-  subtitle?: string;
-  description?: string;
-  imageUrl: string;
-  ctaText?: string;
-  ctaLink?: string;
-  badgeText?: string;
-  badgeColor?: string;
-  isActive: boolean;
-  displayOrder: number;
-}
-
 interface HomePageWithProviderProps {
-  promotions: Promotion[];
   featuredTrucks: Truck[];
   specializedCranes: Truck[];
   semiTrailers: Truck[];
@@ -42,7 +27,6 @@ interface HomePageWithProviderProps {
 }
 
 const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
-  promotions,
   featuredTrucks,
   specializedCranes,
   semiTrailers,
@@ -55,24 +39,12 @@ const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
   enabledTypes
 }) => {
   const isTypeEnabled = (type: string) => enabledTypes.includes(type);
-
-  const featuredProducts = featuredTrucks.map(truck => ({
-    id: truck.id,
-    name: truck.name,
-    thumbnailUrl: truck.thumbnailUrl,
-    price: truck.price,
-    priceText: truck.priceText,
-    slug: truck.slug,
-    type: truck.type,
-    badgeText: truck.isHot ? 'HOT' : truck.isNew ? 'MỚI' : undefined
-  }));
-
   return (
     <CompareProvider>
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
-          <Hero promotions={promotions} featuredProducts={featuredProducts} />
+          <Hero />
 
           <div className="w-full overflow-hidden">
         {isTypeEnabled('xe-tai') && (
