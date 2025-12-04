@@ -51,6 +51,30 @@ collections:
       - { label: "Ẩn", name: "isHidden", widget: "boolean", default: false }
       - { label: "Thứ Tự", name: "order", widget: "number", required: false }
 
+  # Banners Collection
+  - name: "banners"
+    label: "Banner Trang Chủ"
+    label_singular: "Banner"
+    folder: "src/content/banners"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    summary: "{{title}}"
+    sortable_fields: ['title', 'order']
+    fields:
+      - { label: "ID", name: "id", widget: "string", required: true }
+      - { label: "Tiêu Đề Chính", name: "title", widget: "string", required: true }
+      - { label: "Tiêu Đề Phụ (Highlight)", name: "highlightText", widget: "string", required: false }
+      - { label: "Mô Tả", name: "description", widget: "text", required: true }
+      - { label: "Ảnh Nền", name: "backgroundImage", widget: "string", required: true, hint: "URL của ảnh nền" }
+      - { label: "Nút CTA - Text", name: "ctaPrimaryText", widget: "string", default: "Xem danh mục xe" }
+      - { label: "Nút CTA - Link", name: "ctaPrimaryLink", widget: "string", default: "/danh-muc-xe" }
+      - { label: "Nút Phụ - Text", name: "ctaSecondaryText", widget: "string", default: "Liên hệ tư vấn" }
+      - { label: "Nút Phụ - Link", name: "ctaSecondaryLink", widget: "string", default: "/lien-he" }
+      - { label: "Kích Hoạt", name: "isActive", widget: "boolean", default: true }
+      - { label: "Thứ Tự", name: "order", widget: "number", default: 0 }
+
   # Products Collection
   - name: "products"
     label: "Sản Phẩm"
@@ -83,6 +107,9 @@ collections:
         widget: "select"
         options:
           - { label: "Xe Tải", value: "xe-tai" }
+          - { label: "Xe Cẩu", value: "xe-cau" }
+          - { label: "Sơ Mi Rơ Mooc", value: "mooc" }
+          - { label: "Xe Đầu Kéo", value: "dau-keo" }
           - { label: "Xe Cẩu", value: "xe-cau" }
           - { label: "Sơ Mi Rơ Mooc", value: "mooc" }
           - { label: "Xe Đầu Kéo", value: "dau-keo" }

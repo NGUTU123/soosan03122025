@@ -29,6 +29,24 @@ const blogCategoriesCollection = defineCollection({
   }),
 });
 
+// Banners Collection Schema
+const bannersCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    id: z.string(),
+    title: z.string(),
+    highlightText: z.string().optional(),
+    description: z.string(),
+    backgroundImage: z.string(),
+    ctaPrimaryText: z.string(),
+    ctaPrimaryLink: z.string(),
+    ctaSecondaryText: z.string(),
+    ctaSecondaryLink: z.string(),
+    isActive: z.boolean().default(true),
+    order: z.number().default(0),
+  }),
+});
+
 // Products Collection Schema
 const productsCollection = defineCollection({
   type: 'data',
@@ -183,6 +201,7 @@ const blogCollection = defineCollection({
 export const collections = {
   'categories': categoriesCollection,
   'blog-categories': blogCategoriesCollection,
+  'banners': bannersCollection,
   'products': productsCollection,
   'blog': blogCollection,
 };

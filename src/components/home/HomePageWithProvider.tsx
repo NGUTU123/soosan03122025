@@ -12,6 +12,7 @@ import BlogSection from './BlogSection';
 import WeightCategories from './WeightCategories';
 import TestimonialSection from './TestimonialSection';
 import { Truck } from '@/models/TruckTypes';
+import type { Banner } from '../BannerCarousel';
 
 interface HomePageWithProviderProps {
   featuredTrucks: Truck[];
@@ -24,6 +25,7 @@ interface HomePageWithProviderProps {
   categoryInfoMap: any;
   extraCategories: any[];
   enabledTypes: string[];
+  banners?: Banner[];
 }
 
 const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
@@ -36,7 +38,8 @@ const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
   categoryMap,
   categoryInfoMap,
   extraCategories,
-  enabledTypes
+  enabledTypes,
+  banners
 }) => {
   const isTypeEnabled = (type: string) => enabledTypes.includes(type);
   return (
@@ -44,7 +47,7 @@ const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
       <div className="flex flex-col min-h-screen">
         <Header />
         <main className="flex-grow">
-          <Hero />
+          <Hero banners={banners} />
 
           <div className="w-full overflow-hidden">
         {isTypeEnabled('xe-tai') && (

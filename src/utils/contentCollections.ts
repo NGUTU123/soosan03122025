@@ -1,6 +1,7 @@
 import { getCollection } from 'astro:content';
 import type { Truck } from '@/models/TruckTypes';
 import type { BlogPost } from '@/models/BlogPost';
+import type { Banner } from '@/components/BannerCarousel';
 
 /**
  * Get all visible categories (not hidden)
@@ -173,4 +174,35 @@ export async function getOrganizedProducts() {
     semiTrailers: allProducts.filter(p => p.type === 'mooc'),
     tractors: allProducts.filter(p => p.type === 'dau-keo'),
   };
+}
+
+/**
+ * Get all active banners sorted by order
+ */
+export async function getActiveBanners(): Promise<Banner[]> {
+  try {
+    const banners = await getCollection('banners');
+    return banners
+      .filter(banner => banner.data.isActive)
+      .map(banner => banner.data as unknown as Banner)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+  } catch (error) {
+    console.error('Error loading banners:', error);
+    return [];
+  }
+}
+
+/**
+ * Get all banners including inactive ones
+ */
+export async function getAllBanners(): Promise<Banner[]> {
+  try {
+    const banners = await getCollection('banners');
+    return banners
+      .map(banner => banner.data as unknown as Banner)
+      .sort((a, b) => (a.order || 0) - (b.order || 0));
+  } catch (error) {
+    console.error('Error loading banners:', error);
+    return [];
+  }
 }

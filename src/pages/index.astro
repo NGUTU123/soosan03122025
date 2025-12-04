@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HomePageWithProvider from '../components/home/HomePageWithProvider.tsx';
 
-import { getOrganizedProducts, getLegacyBlogData, getVisibleCategories } from '../utils/contentCollections';
+import { getOrganizedProducts, getLegacyBlogData, getVisibleCategories, getActiveBanners } from '../utils/contentCollections';
 import { getBlogCategories } from '../utils/blogCategories';
 
 const { featuredTrucks, specializedCranes, semiTrailers, tractors, trucks } = await getOrganizedProducts();
@@ -16,6 +16,9 @@ const extraCategories = allCategories.filter(cat => !baseKeys.has(cat.data.id));
 
 // Get list of enabled types
 const enabledTypes = allCategories.map(cat => cat.data.id);
+
+// Load active banners
+const banners = await getActiveBanners();
 ---
 
 <BaseLayout
@@ -34,5 +37,6 @@ const enabledTypes = allCategories.map(cat => cat.data.id);
     categoryInfoMap={categoryInfoMap}
     extraCategories={extraCategories}
     enabledTypes={enabledTypes}
+    banners={banners}
   />
 </BaseLayout>
