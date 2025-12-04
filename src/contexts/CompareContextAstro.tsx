@@ -87,6 +87,17 @@ export const CompareProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return `/so-sanh-xe?ids=${encodeURIComponent(ids)}`;
   };
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const currentUrl = window.location.pathname + window.location.search;
+    const newUrl = generateCompareUrl();
+
+    if (currentUrl.startsWith('/so-sanh-xe') && currentUrl !== newUrl) {
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [compareItems]);
+
   const loadTrucksFromUrl = (trucks: Truck[]) => {
     setCompareItems(trucks);
   };

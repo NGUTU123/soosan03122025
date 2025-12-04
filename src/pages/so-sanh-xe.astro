@@ -1,8 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Layout from '../components/Layout.tsx';
-import CompareTable from '../components/compare/CompareTable.tsx';
-import CompareEmptyState from '../components/compare/CompareEmptyState.tsx';
+import ComparePageContent from '../components/compare/ComparePageContent.tsx';
+import { getCollection } from 'astro:content';
+
+const products = await getCollection('products');
+const allTrucks = products.map(product => ({
+  ...product.data,
+  id: product.id,
+  slug: product.slug,
+}));
 ---
 
 <BaseLayout
@@ -16,24 +23,7 @@ import CompareEmptyState from '../components/compare/CompareEmptyState.tsx';
         Chọn tối đa 3 xe để so sánh chi tiết thông số kỹ thuật và giá cả
       </p>
 
-      <div id="compare-content">
-        <CompareEmptyState client:load />
-      </div>
+      <ComparePageContent client:load allTrucks={allTrucks} />
     </div>
   </Layout>
 </BaseLayout>
-
-<script>
-  // Client-side logic to load compare items from localStorage
-  if (typeof window !== 'undefined') {
-    const compareItems = JSON.parse(localStorage.getItem('xetaiviet_compare_items') || '[]');
-
-    if (compareItems.length > 0) {
-      // Replace empty state with compare table
-      const container = document.getElementById('compare-content');
-      if (container) {
-        // Will be handled by React component with client:load
-      }
-    }
-  }
-</script>
