@@ -1,5 +1,9 @@
 import React from 'react';
 import { CompareProvider } from '@/contexts/CompareContextAstro';
+import Header from '../Header';
+import Footer from '../Footer';
+import ScrollToTop from '../ScrollToTop';
+import { Toaster } from '../ui/toaster';
 import Hero from '../Hero';
 import VehicleCarousel from './VehicleCarousel';
 import BrandCategories from './BrandCategories';
@@ -37,9 +41,12 @@ const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
   const isTypeEnabled = (type: string) => enabledTypes.includes(type);
   return (
     <CompareProvider>
-      <Hero />
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow">
+          <Hero />
 
-      <div className="w-full overflow-hidden">
+          <div className="w-full overflow-hidden">
         {isTypeEnabled('xe-tai') && (
           <VehicleCarousel
             vehicles={featuredTrucks}
@@ -108,6 +115,11 @@ const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
           categories={categoryMap}
           categoryInfoMap={categoryInfoMap}
         />
+          </div>
+        </main>
+        <Footer />
+        <ScrollToTop />
+        <Toaster />
       </div>
     </CompareProvider>
   );
