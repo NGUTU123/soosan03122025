@@ -22,10 +22,13 @@ const TruckItem = ({ truck }: TruckItemProps) => {
 
   const handleToggleCompare = (e: React.MouseEvent) => {
     e.preventDefault();
+    console.log('TruckItem: handleToggleCompare clicked for:', truck.name);
 
     if (isInCompare(truck.id)) {
+      console.log('TruckItem: Removing from compare');
       removeFromCompare(truck.id);
     } else {
+      console.log('TruckItem: Adding to compare');
       addToCompare(truck);
 
       if (compareItems.length >= 1) {

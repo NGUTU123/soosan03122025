@@ -19,24 +19,34 @@ const STORAGE_KEY = 'xetaiviet_compare_items';
 
 export const CompareProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [compareItems, setCompareItems] = useState<Truck[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const storedItems = localStorage.getItem(STORAGE_KEY);
     if (storedItems) {
       try {
         const parsedItems = JSON.parse(storedItems);
         setCompareItems(parsedItems);
+        console.log('Loaded compare items from localStorage:', parsedItems);
       } catch (error) {
         console.error('Error parsing stored compare items', error);
       }
     }
+    setIsLoaded(true);
   }, []);
 
   useEffect(() => {
+    if (!isLoaded || typeof window === 'undefined') return;
+
     localStorage.setItem(STORAGE_KEY, JSON.stringify(compareItems));
-  }, [compareItems]);
+    console.log('Saved compare items to localStorage:', compareItems);
+  }, [compareItems, isLoaded]);
 
   const addToCompare = (truck: Truck) => {
+    console.log('addToCompare called with:', truck);
+
     if (compareItems.length >= MAX_COMPARE_ITEMS) {
       toast({
         title: "Đã đạt giới hạn so sánh",
@@ -55,7 +65,11 @@ export const CompareProvider: React.FC<{ children: React.ReactNode }> = ({ child
       return;
     }
 
-    setCompareItems(prev => [...prev, truck]);
+    setCompareItems(prev => {
+      const newItems = [...prev, truck];
+      console.log('New compare items:', newItems);
+      return newItems;
+    });
     toast({
       title: "Đã thêm vào so sánh",
       description: `${truck.name} đã được thêm vào danh sách so sánh.`,
