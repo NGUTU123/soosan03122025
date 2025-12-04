@@ -79,6 +79,22 @@ export const CompareProvider: React.FC<{ children: React.ReactNode }> = ({ child
     return compareItems.some(item => item.id === truckId);
   };
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const currentUrl = window.location.pathname + window.location.search;
+
+    let newUrl = '/so-sanh-xe';
+    if (compareItems.length > 0) {
+      const ids = compareItems.map(item => item.id).join(',');
+      newUrl = `/so-sanh-xe?ids=${encodeURIComponent(ids)}`;
+    }
+
+    if (currentUrl.startsWith('/so-sanh-xe') && currentUrl !== newUrl) {
+      window.history.replaceState({}, '', newUrl);
+    }
+  }, [compareItems]);
+
   const generateCompareUrl = () => {
     if (compareItems.length === 0) {
       return '/so-sanh-xe';
@@ -86,17 +102,6 @@ export const CompareProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const ids = compareItems.map(item => item.id).join(',');
     return `/so-sanh-xe?ids=${encodeURIComponent(ids)}`;
   };
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-
-    const currentUrl = window.location.pathname + window.location.search;
-    const newUrl = generateCompareUrl();
-
-    if (currentUrl.startsWith('/so-sanh-xe') && currentUrl !== newUrl) {
-      window.history.replaceState({}, '', newUrl);
-    }
-  }, [compareItems]);
 
   const loadTrucksFromUrl = (trucks: Truck[]) => {
     setCompareItems(trucks);

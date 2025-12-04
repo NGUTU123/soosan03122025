@@ -9,10 +9,16 @@ interface CompareBadgeProps {
 }
 
 const CompareBadge: React.FC<CompareBadgeProps> = ({ className = "" }) => {
-  const { compareItems } = useCompare();
-  const count = compareItems.length;
+  const [isClient, setIsClient] = React.useState(false);
 
-  if (count === 0) {
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  const { compareItems } = useCompare();
+  const count = isClient ? compareItems.length : 0;
+
+  if (!isClient || count === 0) {
     return null;
   }
 

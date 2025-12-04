@@ -2,14 +2,6 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Layout from '../components/Layout.tsx';
 import ComparePageContent from '../components/compare/ComparePageContent.tsx';
-import { getCollection } from 'astro:content';
-
-const products = await getCollection('products');
-const allTrucks = products.map(product => ({
-  ...product.data,
-  id: product.id,
-  slug: product.slug,
-}));
 ---
 
 <BaseLayout
@@ -23,7 +15,7 @@ const allTrucks = products.map(product => ({
         Chọn tối đa 3 xe để so sánh chi tiết thông số kỹ thuật và giá cả
       </p>
 
-      <ComparePageContent client:load allTrucks={allTrucks} />
+      <ComparePageContent client:load />
     </div>
   </Layout>
 </BaseLayout>

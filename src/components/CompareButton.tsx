@@ -13,24 +13,28 @@ interface CompareButtonProps {
   showCompareNow?: boolean;
 }
 
-const CompareButton: React.FC<CompareButtonProps> = ({ 
-  truck, 
-  variant = "outline", 
+const CompareButton: React.FC<CompareButtonProps> = ({
+  truck,
+  variant = "outline",
   size = "sm",
   className = "",
   showCompareNow = false
 }) => {
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const { addToCompare, removeFromCompare, isInCompare, compareItems } = useCompare();
-  const isAdded = isInCompare(truck.id);
-  
+  const isAdded = isClient ? isInCompare(truck.id) : false;
 
   const handleClick = () => {
     if (isAdded) {
       removeFromCompare(truck.id);
     } else {
       addToCompare(truck);
-      
-      // Nếu có ít nhất một xe khác trong danh sách so sánh
+
       if (compareItems.length >= 1 && showCompareNow) {
         setTimeout(() => {
           const shouldNavigate = window.confirm('Bạn đã thêm xe vào danh sách so sánh. Bạn có muốn đi đến trang so sánh ngay bây giờ không?');
@@ -41,6 +45,20 @@ const CompareButton: React.FC<CompareButtonProps> = ({
       }
     }
   };
+
+  if (!isClient) {
+    return (
+      <Button
+        variant={variant}
+        size={size}
+        disabled
+        className={`flex items-center gap-2 ${className}`}
+      >
+        <GitCompare className="h-4 w-4" />
+        <span>Thêm vào so sánh</span>
+      </Button>
+    );
+  }
 
   return (
     <Button

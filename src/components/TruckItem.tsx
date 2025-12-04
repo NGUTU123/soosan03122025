@@ -12,19 +12,23 @@ interface TruckItemProps {
 
 const TruckItem = ({ truck }: TruckItemProps) => {
   const vehicleUrlPrefix = getVehicleUrlPrefix(truck.type);
+  const [isClient, setIsClient] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const { addToCompare, removeFromCompare, isInCompare, compareItems } = useCompare();
-  
+
   const handleToggleCompare = (e: React.MouseEvent) => {
-    e.preventDefault(); // Ngăn chặn sự kiện click lan tỏa đến thành phần cha
-    
+    e.preventDefault();
+
     if (isInCompare(truck.id)) {
       removeFromCompare(truck.id);
     } else {
       addToCompare(truck);
-      
-      // Nếu đã thêm 2 xe trở lên, hiển thị thông báo và tùy chọn đi đến trang so sánh
+
       if (compareItems.length >= 1) {
-        // Tạo một timeout để đảm bảo state đã được cập nhật
         setTimeout(() => {
           const shouldNavigate = window.confirm('Bạn đã thêm xe vào danh sách so sánh. Bạn có muốn đi đến trang so sánh ngay bây giờ không?');
           if (shouldNavigate) {
@@ -57,27 +61,29 @@ const TruckItem = ({ truck }: TruckItemProps) => {
         </a>
         
         {/* Nút so sánh với icon luôn hiển thị và văn bản chỉ hiển thị khi hover */}
-        <button
-          onClick={handleToggleCompare}
-          className={`
-            absolute bottom-2 right-2
-            flex items-center justify-center gap-1
-            py-1 rounded
-            transition-all duration-300
-            ${isInCompare(truck.id) 
-              ? 'bg-blue-600 text-white hover:bg-blue-700' 
-              : 'bg-white/80 hover:bg-white border border-gray-200 text-gray-700 hover:text-blue-600'
-            }
-            shadow-md hover:shadow-lg
-          `}
-          title={isInCompare(truck.id) ? "Đã thêm vào so sánh" : "Thêm vào so sánh"}
-          aria-label={isInCompare(truck.id) ? "Đã thêm vào so sánh" : "Thêm vào so sánh"}
-        >
-          <GitCompare className="h-5 w-5" style={{color: isInCompare(truck.id) ? 'white' : '#ef4444'}} />
-          <span className={`text-xs font-medium transition-all duration-300 max-w-0 overflow-hidden whitespace-nowrap hover:max-w-[80px] group-hover:max-w-[80px] ${isInCompare(truck.id) ? 'pl-0 group-hover:pl-1 hover:pl-1' : 'pl-0 group-hover:pl-1 hover:pl-1'}`}>
-            {isInCompare(truck.id) ? "Đã thêm" : "So sánh"}
-          </span>
-        </button>
+        {isClient && (
+          <button
+            onClick={handleToggleCompare}
+            className={`
+              absolute bottom-2 right-2
+              flex items-center justify-center gap-1
+              py-1 rounded
+              transition-all duration-300
+              ${isInCompare(truck.id)
+                ? 'bg-blue-600 text-white hover:bg-blue-700'
+                : 'bg-white/80 hover:bg-white border border-gray-200 text-gray-700 hover:text-blue-600'
+              }
+              shadow-md hover:shadow-lg
+            `}
+            title={isInCompare(truck.id) ? "Đã thêm vào so sánh" : "Thêm vào so sánh"}
+            aria-label={isInCompare(truck.id) ? "Đã thêm vào so sánh" : "Thêm vào so sánh"}
+          >
+            <GitCompare className="h-5 w-5" style={{color: isInCompare(truck.id) ? 'white' : '#ef4444'}} />
+            <span className={`text-xs font-medium transition-all duration-300 max-w-0 overflow-hidden whitespace-nowrap hover:max-w-[80px] group-hover:max-w-[80px] ${isInCompare(truck.id) ? 'pl-0 group-hover:pl-1 hover:pl-1' : 'pl-0 group-hover:pl-1 hover:pl-1'}`}>
+              {isInCompare(truck.id) ? "Đã thêm" : "So sánh"}
+            </span>
+          </button>
+        )}
         
         <div className="absolute top-2 left-2 flex flex-wrap gap-1">
           {truck.isNew && (
