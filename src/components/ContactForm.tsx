@@ -160,9 +160,9 @@ const ContactForm: React.FC<ContactFormProps> = ({
         />
       </div>
       
-      <Button 
-        type="submit" 
-        className="w-full bg-primary hover:bg-red-700"
+      <Button
+        type="submit"
+        className="w-full bg-primary hover:bg-primary-700"
         disabled={isSubmitting}
       >
         {isSubmitting ? 'Đang gửi...' : 'Gửi yêu cầu tư vấn'}

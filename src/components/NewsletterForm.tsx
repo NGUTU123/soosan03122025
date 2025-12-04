@@ -126,9 +126,9 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
           />
         </div>
         
-        <Button 
-          type="submit" 
-          className="w-full bg-primary hover:bg-red-700"
+        <Button
+          type="submit"
+          className="w-full bg-primary hover:bg-primary-700"
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Đang đăng ký...' : buttonText}

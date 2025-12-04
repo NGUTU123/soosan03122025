@@ -182,7 +182,7 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
         <Button
           onClick={handleApplyFilters}
-          className="w-full bg-primary hover:bg-red-700"
+          className="w-full bg-primary hover:bg-primary-700"
         >
           Áp dụng bộ lọc
         </Button>
