@@ -14,9 +14,9 @@ const visibleTrucks = await getVisibleProducts();
 >
   <Layout client:load>
     <div class="container mx-auto px-4 py-8">
-      <CatalogHeader client:load initialVehicleCount={visibleTrucks.length} />
+      <CatalogHeader initialVehicleCount={visibleTrucks.length} />
 
-      <CatalogPage client:load initialVehicles={visibleTrucks} />
+      <CatalogPage initialVehicles={visibleTrucks} />
     </div>
   </Layout>
 </BaseLayout>
