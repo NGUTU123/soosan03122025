@@ -40,7 +40,7 @@ const categoryName = category?.data.name || truck.type;
   description={truck.description}
 >
   <ProductDetailWithProvider
-    client:load
+    client:idle
     truck={truck}
     relatedTrucks={relatedTrucks}
   />

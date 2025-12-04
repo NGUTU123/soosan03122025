@@ -11,7 +11,7 @@ const visibleTrucks = await getVisibleProducts();
   description="Khám phá danh mục đầy đủ các loại xe tải, xe cẩu, sơ mi rơ mooc, xe đầu kéo từ các thương hiệu uy tín. Giá tốt, chất lượng đảm bảo."
 >
   <CatalogPageWithProvider
-    client:load
+    client:idle
     initialVehicles={visibleTrucks}
     initialVehicleCount={visibleTrucks.length}
   />
