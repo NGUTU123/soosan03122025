@@ -19,7 +19,7 @@ interface HomePageWithProviderProps {
   categoryMap: any;
   categoryInfoMap: any;
   extraCategories: any[];
-  isTypeEnabled: (type: string) => boolean;
+  enabledTypes: string[];
 }
 
 const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
@@ -32,8 +32,9 @@ const HomePageWithProvider: React.FC<HomePageWithProviderProps> = ({
   categoryMap,
   categoryInfoMap,
   extraCategories,
-  isTypeEnabled
+  enabledTypes
 }) => {
+  const isTypeEnabled = (type: string) => enabledTypes.includes(type);
   return (
     <CompareProvider>
       <Hero />

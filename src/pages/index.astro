@@ -14,10 +14,8 @@ const allCategories = await getVisibleCategories();
 const baseKeys = new Set(['xe-tai', 'xe-cau', 'mooc', 'dau-keo']);
 const extraCategories = allCategories.filter(cat => !baseKeys.has(cat.data.id));
 
-// Helper to check if type is enabled
-const isTypeEnabled = (type: string) => {
-  return allCategories.some(cat => cat.data.id === type);
-};
+// Get list of enabled types
+const enabledTypes = allCategories.map(cat => cat.data.id);
 ---
 
 <BaseLayout
@@ -35,6 +33,6 @@ const isTypeEnabled = (type: string) => {
     categoryMap={categoryMap}
     categoryInfoMap={categoryInfoMap}
     extraCategories={extraCategories}
-    isTypeEnabled={isTypeEnabled}
+    enabledTypes={enabledTypes}
   />
 </BaseLayout>
