@@ -1,5 +1,9 @@
 import React from 'react';
 import { CompareProvider } from '@/contexts/CompareContextAstro';
+import Header from '../Header';
+import Footer from '../Footer';
+import ScrollToTop from '../ScrollToTop';
+import { Toaster } from '../ui/toaster';
 import { Truck } from '@/models/TruckTypes';
 import { OptimizedImage } from '@/components/ui/optimized-image';
 import TruckActions from './TruckActions';
@@ -17,7 +21,10 @@ const ProductDetailWithProvider: React.FC<ProductDetailWithProviderProps> = ({
 }) => {
   return (
     <CompareProvider>
-      <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col min-h-screen">
+        <Header />
+        <main className="flex-grow">
+          <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div>
             <OptimizedImage
@@ -113,6 +120,11 @@ const ProductDetailWithProvider: React.FC<ProductDetailWithProviderProps> = ({
             </div>
           </div>
         )}
+          </div>
+        </main>
+        <Footer />
+        <ScrollToTop />
+        <Toaster />
       </div>
     </CompareProvider>
   );
