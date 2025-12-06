@@ -17,22 +17,22 @@ const TruckActions = ({ truck }: TruckActionsProps) => {
       <PriceQuoteDialog
         productName={truck.name}
         trigger={
-          <Button variant="default" size="lg" className="bg-primary hover:bg-primary/90 flex-1">
+          <Button variant="default" size="lg" className="bg-cta hover:bg-cta-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300 flex-1">
             Nhận báo giá
           </Button>
         }
       />
-      
-      <a 
-        href="tel:0764678901" 
+
+      <a
+        href="tel:0764678901"
         className="flex-1"
       >
-        <Button 
-          variant="outline" 
+        <Button
+          variant="outline"
           size="lg"
-          className="border-primary text-primary hover:bg-primary/10 w-full"
+          className="border-cta text-cta hover:bg-cta hover:text-white w-full font-semibold transition-all duration-300 relative group"
         >
-          <Phone className="mr-2 h-4 w-4" />
+          <Phone className="mr-2 h-4 w-4 animate-pulse" />
           0764 678 901
         </Button>
       </a>
