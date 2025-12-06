@@ -88,26 +88,14 @@ const TruckItem = ({ truck }: TruckItemProps) => {
           </button>
         )}
         
-        <div className="absolute top-2 left-2 flex flex-wrap gap-1 max-w-[calc(100%-4rem)]">
+        <div className="absolute top-2 left-2 flex flex-wrap gap-1">
           {truck.isNew && (
             <Badge className="bg-blue-500 hover:bg-blue-600">Mới</Badge>
           )}
           {truck.isHot && (
-            <Badge className="bg-action hover:bg-action-600">Hot</Badge>
-          )}
-          {truck.discount && (
-            <Badge className="bg-value hover:bg-value-600 text-black font-bold">-{truck.discount}%</Badge>
-          )}
-          {truck.specialOffer && (
-            <Badge className="bg-value hover:bg-value-600 text-black font-bold">{truck.specialOffer}</Badge>
+            <Badge className="bg-red-500 hover:bg-red-600">Hot</Badge>
           )}
         </div>
-
-        {truck.stock && truck.stock <= 3 && (
-          <div className="absolute top-2 right-2 bg-action text-white text-xs px-2 py-1 rounded font-semibold shadow-md">
-            Chỉ còn {truck.stock} chiếc
-          </div>
-        )}
       </div>
       
       <div className="p-4 flex-grow flex flex-col">
@@ -116,7 +104,7 @@ const TruckItem = ({ truck }: TruckItemProps) => {
             {renderBrands()}
           </span>
           <a href={`/${vehicleUrlPrefix}/${truck.slug}`} className="group" onClick={() => window.scrollTo(0, 0)}>
-            <h3 className="font-bold text-lg mb-2 hover:text-cta transition-colors line-clamp-2">
+            <h3 className="font-bold text-lg mb-2 hover:text-red-600 transition-colors line-clamp-2">
               {truck.name}
             </h3>
           </a>
@@ -134,24 +122,9 @@ const TruckItem = ({ truck }: TruckItemProps) => {
             </div>
           </div>
           
-          <div className="mt-2 mb-3">
-            <div className="text-action font-bold text-lg">
-              {truck.priceText}
-            </div>
-            {truck.savings && (
-              <div className="text-value text-sm font-semibold mt-1">
-                Tiết kiệm {truck.savings}
-              </div>
-            )}
+          <div className="text-red-600 font-bold text-lg mt-2">
+            {truck.priceText}
           </div>
-
-          <a
-            href={`/${vehicleUrlPrefix}/${truck.slug}`}
-            onClick={() => window.scrollTo(0, 0)}
-            className="block w-full text-center bg-cta hover:bg-cta-600 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
-          >
-            Liên hệ ngay
-          </a>
         </div>
       </div>
     </div>

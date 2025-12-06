@@ -162,7 +162,7 @@ const ContactForm: React.FC<ContactFormProps> = ({
       
       <Button
         type="submit"
-        className="w-full bg-cta hover:bg-cta-600 text-white font-semibold shadow-md hover:shadow-lg transition-all duration-300"
+        className="w-full bg-primary hover:bg-primary-700"
         disabled={isSubmitting}
       >
         {isSubmitting ? 'Đang gửi...' : 'Gửi yêu cầu tư vấn'}

@@ -43,8 +43,8 @@ const QuickContact: React.FC<QuickContactProps> = ({ isOpen: externalIsOpen, set
     {
       href: "tel:0764678901",
       icon: <Phone className="w-5 h-5" />,
-      color: "bg-cta",
-      hoverColor: "hover:bg-cta-600",
+      color: "bg-[#E60019]",
+      hoverColor: "hover:bg-[#CC0017]",
       label: "Điện thoại"
     },
     {
@@ -105,11 +105,11 @@ const QuickContact: React.FC<QuickContactProps> = ({ isOpen: externalIsOpen, set
       onClick={handleInteraction}
     >
       {!actualIsOpen && (
-        <div
-          className="relative w-[66px] h-[66px] bg-cta rounded-full shadow-lg cursor-pointer hover:shadow-xl transition-shadow"
+        <div 
+          className="relative w-[66px] h-[66px] bg-[#00aeef] rounded-full shadow-lg cursor-pointer"
           onClick={() => setActualIsOpen(true)}
         >
-          <div className="absolute inset-0 rounded-full border border-cta animate-[widgetPulse_1.5s_infinite]" />
+          <div className="absolute inset-0 rounded-full border border-[#00aeef] animate-[widgetPulse_1.5s_infinite]" />
           
           <div className="relative w-full h-full overflow-hidden rounded-full">
             {contactLinks.map((contact, index) => (

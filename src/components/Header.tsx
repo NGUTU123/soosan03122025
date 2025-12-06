@@ -78,11 +78,11 @@ const Header: React.FC = () => {
           {/* Contact & Search Button */}
           <div className="flex items-center space-x-3">
             {!isMobile && (
-              <div className="hidden md:flex items-center space-x-2 bg-cta-50 px-3 py-1.5 rounded-lg">
-                <Phone className="h-4 w-4 text-cta animate-pulse" />
+              <div className="hidden md:flex items-center space-x-2">
+                <Phone className="h-4 w-4 text-primary" />
                 <a
                   href="tel:0764678901"
-                  className="text-sm font-bold hover:underline text-cta"
+                  className="text-sm font-bold hover:underline text-black"
                   aria-label="Gọi ngay: 0764 6789 01"
                 >
                   0764 6789 01

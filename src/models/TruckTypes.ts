@@ -250,10 +250,6 @@ export interface Truck {
   type: VehicleType;
   isNew?: boolean;
   isHot?: boolean;
-  discount?: number;
-  savings?: string;
-  stock?: number;
-  specialOffer?: string;
   origin?: string;
   thumbnailUrl: string;
   images: string[];
